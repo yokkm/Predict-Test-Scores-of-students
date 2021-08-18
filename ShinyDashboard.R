@@ -9,7 +9,7 @@ library(dplyr)
 
 
 
-myData <- read.csv('/Users/yokk/Desktop/test_scores.csv', sep = ",")
+myData <- read.csv('./test_scores.csv', sep = ",")
 # myData <- read.csv('/Users/yokk/Desktop/test_scores.csv', sep = ",")
 myData <- na.omit(myData)
 y<-sapply(myData,as.numeric)
@@ -99,44 +99,11 @@ server <- function(input, output)
     # 3. Return result
     new_df
   })
-  # output$mytable2 <- renderPlot({
-  #   ggplot(selected_df()) +
-  #     geom_col(aes_string(x=input$show_vars2, y='student_id'))
-  #   })
-  
-  # a<-reactive({
-  #   col_selected <- input$show_vars2
-  #   # 2. Filter data
-  #   df <- subset(myData, select=c(col_selected,'student_id'))
-  #   # 3. Return result
-  #   #df
-  #   ############
-  #   bb <- df %>%
-  #     group_by(col_selected) %>%
-  #     summarise(ttl = n_distinct(student_id)) %>%
-  #     arrange(desc(ttl))
-  #   bb
-  #   })
-  
-  
-
-  # 
-  # output$mytable2 <- renderPlot({
-  #   ggplot(data=t()) +
-  #     geom_bar(stat = "count",mapping = aes(x = input$show_vars2 , y = ttl))
-  #   
-  # })
 
   ### working showing the filtered col
   output$mytable2 <- DT::renderDataTable(
     DT::datatable(selected_df(),options = list(pageLength = 5,searching = FALSE,scrollX = TRUE)))
 
-
-  #   
-  #   
-  #   
-  # })
-  
   
 
   
